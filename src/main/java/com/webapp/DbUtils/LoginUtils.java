@@ -21,11 +21,11 @@ public class LoginUtils extends Driver {
     public Map getSingleUser(String login) {
         Map<String, String> userMap = new HashMap<>();
         try {
-            ResultSet results = driver.prepareConnection().executeQuery("SELECT * FROM users WHERE login ='" + login + "' ");
+            ResultSet results = driver.prepareConnection().executeQuery("SELECT * FROM users WHERE userLogin ='" + login + "' ");
             while (results.next()) {
                 userMap.put("userID", results.getString("userID"));
                 userMap.put("accType", results.getString("accType"));
-                userMap.put("login", results.getString("login"));
+                userMap.put("login", results.getString("userLogin"));
                 userMap.put("password", results.getString("password"));
             }
             driver.closeConnection();
@@ -43,6 +43,7 @@ public class LoginUtils extends Driver {
         //TODO check cast (Integer) vs parse
         var userIdAtt = req.getSession().getAttribute("userID");
         var loginAtt = req.getSession().getAttribute("login");
+        System.out.println("AAAA:" + req.getSession().getAttribute("login"));
         try {
             driver.prepareConnection();
             PreparedStatement preparedStmt = driver.myConnection.prepareStatement(query);

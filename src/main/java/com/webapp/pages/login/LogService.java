@@ -18,7 +18,7 @@ public class LogService {
         if (loginParam.length() > 3 && passwordParam.length() > 5) {
             Map userMap = loginUtils.getSingleUser(loginParam);
 
-            if (userMap.get("password").equals(passwordParam)) {
+            if (userMap.get("password") != null && userMap.get("password").equals(passwordParam)) {
                 setAttribute(userMap);
                 return true;
             }

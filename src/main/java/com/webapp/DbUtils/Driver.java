@@ -21,7 +21,7 @@ public class Driver {
             myConnection = DriverManager.getConnection(JDBC_MYSQL_127_0_0_1_3306_SRH, USER, PASSWORD);
             return myConnection.createStatement();
         }catch (CommunicationsException e){
-            System.out.println("Kurva!!!!");
+            System.out.println("Error Driver!!!!");
         } catch (SQLException e) {
             e.printStackTrace();
         }
