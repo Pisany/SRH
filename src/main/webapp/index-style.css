@@ -1,0 +1,23 @@
+body{
+	background-image: url(img/fabric_of_squares_gray.png);
+}
+#container {
+	background-color: #ffffff;
+	width: 500px;
+	padding: 50px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 200px;
+	-webkit-box-shadow: 3px 3px 30px 5px rgba(0, 0, 0, 0.8);
+	-moz-box-shadow: 3px 3px 30px 5px rgba(0, 0, 0, 0.8);
+	box-shadow: 3px 3px 30px 5px rgba(0, 0, 0, 0.8);
+	border-radius: 10px;
+
+}
+
+
+
+
+
+
+
