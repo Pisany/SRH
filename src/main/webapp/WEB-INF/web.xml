@@ -20,6 +20,12 @@
         </jsp-property-group>
     </jsp-config>
 
+    <listener>
+        <listener-class>
+            com.webapp.utils.SRHServletContextListener
+        </listener-class>
+    </listener>
+
     <!-- login servlet
     <servlet>
         <servlet-name>Login</servlet-name>

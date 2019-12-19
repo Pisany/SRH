@@ -9,62 +9,35 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-
-@WebServlet(name = "Login", urlPatterns = {"/logout"})
+@WebServlet(name = "Logout", urlPatterns = {"/logout"})
 public class LogOutServlet extends HttpServlet {
 
-    private final Logger logger = LoggerFactory.getLogger(LogOutServlet.class);
+    private final Logger logger = LoggerFactory.getLogger(com.webapp.pages.login.LogOutServlet.class);
 
 
-
-//    private LoginService service;
 
     /**
      * Servlet container needs it.
      */
     @SuppressWarnings("unused")
-//    public LoginServlet() {
-//        this(new LoginService());
-//    }
+    public LogOutServlet() {
 
-//    LoginServlet(LoginService service) {
-//        this.service = service;
-//    }
-
-
+    }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         logger.info("Got request with parameters " + req.getParameterMap());
 
+        System.out.println(req.getRequestURI());
+        req.getSession().removeAttribute("login");
+        req.getSession().removeAttribute("account_type");
+        req.getSession().removeAttribute("password");
+
+        resp.sendRedirect(req.getContextPath() + "/index.html");
 
 
-//        service.prepareUserList();
-//        System.out.println("Servlet");
-//        System.out.println(req.getRequestURI());
-//        if(service.checkPassword(req)){
-//
-//            System.out.println(req.getSession().getAttribute("login"));
-//            System.out.println("->" + req.getSession().getAttribute("account_type") + "<-");
-//            System.out.println(req.getContextPath());
-//
-//
-//            if(req.getSession().getAttribute("account_type").toString().equals("0")) {
-//                System.out.println("option 1");
-//                System.out.println(req.getContextPath());
-//                resp.sendRedirect(req.getContextPath() + "/app/adm/main.jsp");
-//
-//            }else{
-//                System.out.println("option 2");
-//
-//                resp.sendRedirect(req.getContextPath() + "/app/usr/main.jsp");
-//
-//            }
-//
-//        }else{
-//            resp.sendRedirect(req.getContextPath() + "/wrongPassword.html");
-//        }
-//
+
+
 
     }
 }

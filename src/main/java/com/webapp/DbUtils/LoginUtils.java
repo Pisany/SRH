@@ -13,9 +13,9 @@ import java.util.Map;
 public class LoginUtils extends Driver {
     private final Logger logger = LoggerFactory.getLogger(LoginUtils.class);
     private Driver driver = new Driver();
+    HttpServletRequest req;
 
     //TODO select * from users - need id and acctype
-
 
 
     public Map getSingleUser(String login) {
@@ -39,7 +39,7 @@ public class LoginUtils extends Driver {
 
     public void insertIntoUSERINFO(HttpServletRequest req) {
         String query = "INSERT INTO `userinfo`(`userID`, `userLogin`, `loginTime`)" + "VALUES (?,?,now()) ";
-        //TODO change in database logIn type, string to datetime
+        this.req = req;
         //TODO check cast (Integer) vs parse
         var userIdAtt = req.getSession().getAttribute("userID");
         var loginAtt = req.getSession().getAttribute("login");
@@ -47,7 +47,7 @@ public class LoginUtils extends Driver {
         try {
             driver.prepareConnection();
             PreparedStatement preparedStmt = driver.myConnection.prepareStatement(query);
-            preparedStmt.setInt(1,  Integer.parseInt(String.valueOf(userIdAtt)));
+            preparedStmt.setInt(1, Integer.parseInt(String.valueOf(userIdAtt)));
             preparedStmt.setString(2, String.valueOf(loginAtt));
 
             preparedStmt.executeUpdate();
@@ -56,9 +56,25 @@ public class LoginUtils extends Driver {
             e.printStackTrace();
         }
     }
+
+    public void insertInToUSERINFOLogoutTime() {
+        var userIdAtt = req.getSession().getAttribute("userID");
+
+        String query = "UPDATE userinfo SET `logoutTime`= now() WHERE `ID` = " +
+                "(SELECT ID FROM `userinfo` WHERE `userID` = " + userIdAtt + " ORDER BY loginTime DESC LIMIT 1);";
+        try {
+            driver.prepareConnection();
+            PreparedStatement preparedStmt = driver.myConnection.prepareStatement(query);
+            preparedStmt.executeUpdate();
+            driver.closeConnection();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
     public void insertIntoLOGINATTEMPT(HttpServletRequest req) {
         String query = "INSERT INTO `loginattempt`(`userLogin`, `password`, `login`)" + "VALUES (?,?,now()) ";
-        //TODO change in database logIn type, string to datetime
         var loginParam = req.getParameter("login");
         var passwordParam = req.getParameter("password");
         try {
@@ -73,7 +89,6 @@ public class LoginUtils extends Driver {
             e.printStackTrace();
         }
     }
-
 
 
 }
