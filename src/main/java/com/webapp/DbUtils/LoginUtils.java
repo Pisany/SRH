@@ -13,7 +13,7 @@ import java.util.Map;
 public class LoginUtils extends Driver {
     private final Logger logger = LoggerFactory.getLogger(LoginUtils.class);
     private Driver driver = new Driver();
-    HttpServletRequest req;
+    private HttpServletRequest req;
 
     //TODO select * from users - need id and acctype
 
@@ -43,7 +43,7 @@ public class LoginUtils extends Driver {
         //TODO check cast (Integer) vs parse
         var userIdAtt = req.getSession().getAttribute("userID");
         var loginAtt = req.getSession().getAttribute("login");
-        System.out.println("AAAA:" + req.getSession().getAttribute("login"));
+        System.out.println("LoginUtils AAAA:" + req.getSession().getAttribute("login"));
         try {
             driver.prepareConnection();
             PreparedStatement preparedStmt = driver.myConnection.prepareStatement(query);
@@ -57,9 +57,7 @@ public class LoginUtils extends Driver {
         }
     }
 
-    public void insertInToUSERINFOLogoutTime() {
-        var userIdAtt = req.getSession().getAttribute("userID");
-
+    public void insertInToUSERINFOLogoutTime(int userIdAtt) {
         String query = "UPDATE userinfo SET `logoutTime`= now() WHERE `ID` = " +
                 "(SELECT ID FROM `userinfo` WHERE `userID` = " + userIdAtt + " ORDER BY loginTime DESC LIMIT 1);";
         try {

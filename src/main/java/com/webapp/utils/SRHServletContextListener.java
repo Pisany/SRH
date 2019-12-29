@@ -39,14 +39,17 @@ public class SRHServletContextListener implements ServletContextListener,
     public void sessionCreated(HttpSessionEvent event) {
         /* Session is created. */
         System.out.println("Session is created");
-        event.getSession().setMaxInactiveInterval(10); // in seconds
+        event.getSession().setMaxInactiveInterval(60*60); // in seconds
     }
 
     public void sessionDestroyed(HttpSessionEvent se) {
         /* Session is destroyed. */
         System.out.println("Session is destroyed");
-        LoginUtils loginUtils = new LoginUtils();
-        loginUtils.insertInToUSERINFOLogoutTime();
+        if(!se.getSession().isNew()){
+            var foo = Integer.parseInt(String.valueOf(se.getSession().getAttribute("userID")));
+            LoginUtils loginUtils = new LoginUtils();
+            loginUtils.insertInToUSERINFOLogoutTime(foo);
+        }
 
     }
 

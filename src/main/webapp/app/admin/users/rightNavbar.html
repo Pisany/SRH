@@ -1,0 +1,231 @@
+<head>
+    <meta charset="UTF-8">
+    <title>Smaczne danie 🍲</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="dupa"/>
+    <meta name="keywords" content="zamów, FMGC, garmżeryjne, mrożonki, frytki, zapiekanki,hotdogi"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+
+
+    <!-- MDB icon -->
+    <link rel="icon" href="../../../mdbootstrap/img/mdb-favicon.ico" type="image/x-icon">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="../../../mdbootstrap/css/bootstrap.min.css">
+    <!-- Material Design Bootstrap -->
+    <link rel="stylesheet" href="../../../mdbootstrap/css/mdb.min.css">
+    <!-- Your custom styles (optional) -->
+    <link rel="stylesheet" href="../../../mdbootstrap/css/style.css">
+</head>
+
+<header>
+    <!--Navbar-->
+        <nav class="nav flex-column deep-orange darken-3 py-4 mb-r font-weight-bold z-depth-1">
+            <div class="text-center">
+                <a href="" class="btn btn-info btn-rounded btn-sm" data-toggle="modal" data-target="#modalAdd">Dodaj<i
+                        class="fas fa-plus-square ml-1"></i></a>
+            </div>
+
+            <div class="text-center buttonEditWrapper">
+                <button class="btn btn-info btn-rounded btn-sm buttonEdit" data-toggle="modal" data-target="#modalEdit"
+                        disabled>Edytuj<i class="fas fa-pencil-square-o ml-1"></i></button>
+            </div>
+
+            <div class="text-center">
+                <button class="btn btn-danger btn-sm btn-rounded buttonDelete" data-toggle="modal" disabled data-target="#modalDelete"
+                        disabled>Usuń<i class="fas fa-times ml-1"></i></button>
+            </div>
+
+            <div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="modalDelete"
+                 aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header text-center">
+                            <h4 class="modal-title w-100 font-weight-bold ml-5 text-danger">Delete</h4>
+                            <button type="button" class="close text-danger" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body mx-3">
+                            <p class="text-center h4">Are you sure to delete selected row?</p>
+
+                        </div>
+                        <div class="modal-footer d-flex justify-content-center deleteButtonsWrapper">
+                            <button type="button" class="btn btn-danger btnYesClass" id="btnYes" data-dismiss="modal">Yes</button>
+                            <button type="button" class="btn btn-primary btnNoClass" id="btnNo" data-dismiss="modal">No</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row d-flex justify-content-center modalWrapper">
+                <div class="modal fade addNewInputs" id="modalAdd" tabindex="-1" role="dialog" aria-labelledby="modalAdd"
+                     aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header text-center">
+                                <h4 class="modal-title w-100 font-weight-bold text-primary ml-5">Dodaj użytkownika</h4>
+                                <button type="button" class="close text-primary" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body mx-3">
+                                <div class="md-form mb-5">
+                                    <input type="text" id="inputLogin" class="form-control validate" placeholder="Login" required>
+                                    <label data-error="wrong" data-success="right" for="inputLogin" ></label>
+                                </div>
+
+                                <div class="md-form mb-5">
+                                    <input type="text" id="inputName" class="form-control validate" placeholder="Imię" required>
+                                    <label data-error="wrong" data-success="right" for="inputName"></label>
+                                </div>
+
+                                <div class="md-form mb-5">
+                                    <input type="text" id="inputSurname" class="form-control validate" placeholder="Nazwisko" required>
+                                    <label data-error="wrong" data-success="right" for="inputSurname"></label>
+                                </div>
+
+                                <div class="md-form mb-5">
+                                    <input type="text" id="inputPhone" class="form-control validate" placeholder="Telefon">
+                                    <label data-error="wrong" data-success="right" for="inputPhone"></label>
+                                </div>
+
+                                <div class="md-form mb-5">
+                                    <input type="email" id="inputEmail" class="form-control" placeholder="Email">
+                                    <label data-error="wrong" data-success="right" for="inputEmail"></label>
+                                </div>
+
+                                <div class="md-form mb-5">
+                                    <input type="text" id="inputCity" class="form-control validate" placeholder="Miasto">
+                                    <label data-error="wrong" data-success="right" for="inputCity"></label>
+                                </div>
+
+                                <div class="md-form mb-5">
+                                    <input type="text" id="inputPostCode" class="form-control validate" placeholder="Kod pocztowy">
+                                    <label data-error="wrong" data-success="right" for="inputPostCode"></label>
+                                </div>
+
+                                <div class="md-form mb-5">
+                                    <input type="text" id="inputAdress" class="form-control validate" placeholder="Adres">
+                                    <label data-error="wrong" data-success="right" for="inputAdress"></label>
+                                </div>
+
+                            </div>
+                            <div class="modal-footer d-flex justify-content-center buttonAddFormWrapper" >
+                                <button class="btn btn-outline-primary btn-block buttonAdd" data-dismiss="modal" id="addUser">Dodaj tu
+                                    <i class="fas fa-paper-plane-o ml-1"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade modalEditClass" id="modalEdit" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header text-center">
+                                <h4 class="modal-title w-100 font-weight-bold text-secondary ml-5">Edit form</h4>
+                                <button type="button" class="close text-secondary" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body mx-3">
+                                <div class="md-form mb-5">
+                                    <input type="text" id="formNameEdit" class="form-control validate">
+                                    <label data-error="wrong" data-success="right" for="formNameEdit">Name</label>
+                                </div>
+
+                                <div class="md-form mb-5">
+                                    <input type="text" id="formPositionEdit" class="form-control validate">
+                                    <label data-error="wrong" data-success="right" for="formPositionEdit">Position</label>
+                                </div>
+
+                                <div class="md-form mb-5">
+                                    <input type="text" id="formOfficeEdit" class="form-control validate">
+                                    <label data-error="wrong" data-success="right" for="formOfficeEdit">Office</label>
+                                </div>
+
+                                <div class="md-form mb-5">
+                                    <input type="text" id="formAgeEdit" class="form-control validate">
+                                    <label data-error="wrong" data-success="right" for="formAgeEdit">Age</label>
+                                </div>
+
+                                <div class="md-form mb-5">
+                                    <input type="text" id="formDateEdit" class="form-control datepicker">
+                                    <label data-error="wrong" data-success="right" for="formDateEdit">Date</label>
+                                </div>
+
+                                <div class="md-form mb-5">
+                                    <input type="text" id="formSalaryEdit" class="form-control validate">
+                                    <label data-error="wrong" data-success="right" for="formSalaryEdit">Salary</label>
+                                </div>
+
+
+                            </div>
+                            <div class="modal-footer d-flex justify-content-center editInsideWrapper">
+                                <button class="btn btn-outline-secondary btn-block editInside" data-dismiss="modal">Edit
+                                    form
+                                    <i class="fas fa-paper-plane-o ml-1"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </nav>
+
+    <!--/.Navbar-->
+</header>
+
+<script>
+    $(document).ready(function() {
+        var t = $('#userTable').DataTable();
+        var counter = 1;
+
+        $('#addUser').on( 'click', function () {
+            t.row.add( [
+                counter +'.1',
+                counter +'.2',
+                counter +'.3',
+                counter +'.4',
+                counter +'.5',
+                counter +'.6',
+                counter +'.7',
+            ] ).draw( false );
+
+            counter++;
+        } );
+
+        // Automatically add a first row of data
+        //$('#addRow').click();
+    } );
+
+    $('#userTable').DataTable( {
+        language: {
+            "processing":     "Przetwarzanie...",
+            "search":         "Szukaj:",
+            "lengthMenu":     "Pokaż _MENU_ pozycji",
+            "info":           "Pozycje od _START_ do _END_ z _TOTAL_ łącznie",
+            "infoEmpty":      "Pozycji 0 z 0 dostępnych",
+            "infoFiltered":   "(filtrowanie spośród _MAX_ dostępnych pozycji)",
+            "infoPostFix":    "",
+            "loadingRecords": "Wczytywanie...",
+            "zeroRecords":    "Nie znaleziono pasujących pozycji",
+            "emptyTable":     "Brak danych",
+            "paginate": {
+                "first":      "Pierwsza",
+                "previous":   "Poprzednia",
+                "next":       "Następna",
+                "last":       "Ostatnia"
+            },
+            "aria": {
+                "sortAscending": ": aktywuj, by posortować kolumnę rosnąco",
+                "sortDescending": ": aktywuj, by posortować kolumnę malejąco"
+            }
+        }
+    } );
+</script>
+
+

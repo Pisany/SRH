@@ -46,44 +46,13 @@ public class LogInServlet extends HttpServlet {
             resp.getWriter().println("nie GIT");
             loginService.loginUtils.insertIntoLOGINATTEMPT(req);
         }
-
-//
-//        System.out.println(req.getContextPath());
-//        resp.sendRedirect(req.getContextPath() + "/app/adm/main.jsp");
-//        service.prepareUserList();
-//        System.out.println("Servlet");
-//        System.out.println(req.getRequestURI());
-//        if(service.checkPassword(req)){
-//
-//            System.out.println(req.getSession().getAttribute("login"));
-//            System.out.println("->" + req.getSession().getAttribute("account_type") + "<-");
-//            System.out.println(req.getContextPath());
-//
-//
-//            if(req.getSession().getAttribute("account_type").toString().equals("0")) {
-//                System.out.println("option 1");
-//                System.out.println(req.getContextPath());
-//                resp.sendRedirect(req.getContextPath() + "/app/adm/main.jsp");
-//
-//            }else{
-//                System.out.println("option 2");
-//
-//                resp.sendRedirect(req.getContextPath() + "/app/usr/main.jsp");
-//
-//            }
-//
-//        }else{
-//            resp.sendRedirect(req.getContextPath() + "/wrongPassword.html");
-//        }
-//
-
     }
 
     private String changePage() {
         if (loginService.checkAccType() == 0) {
-            return "/app/admin/main.html";
+            return "/app/admin/main/page.html";
         } else if (loginService.checkAccType() == 1) {
-            return "/app/user/main.html";
+            return "/app/user/main/page.html";
         } else {
             return "error";
         }

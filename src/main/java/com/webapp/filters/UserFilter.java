@@ -28,7 +28,7 @@ public class UserFilter implements Filter {
         if (session == null || session.getAttribute("accType") == null || !session.getAttribute("accType").toString().equals("1")) { // change "user" for the session attribute you have defined
             System.out.println("access denied usr");
             System.out.println(request.getContextPath());
-            response.sendRedirect((request.getContextPath()+"/app/admin/main.html")); // No logged-in user found, so redirect to login page.
+            response.sendRedirect((request.getContextPath()+"/app/admin/main/page.html")); // No logged-in user found, so redirect to login page.
 
         } else {
             chain.doFilter(req, res); // Logged-in user found, so just continue request.
